@@ -6,7 +6,7 @@ A website for Hunters who want to keep track of their captured pets.
 
 ### Installation
 
-    cd ~/path/to/go/github.com/carlos-loya/
+    cd $GOPATH/src/github.com/carlos-loya/
     git clone https://github.com/carlos-loya/hunt-dex.git
 
 ### Feature Branching
@@ -16,3 +16,9 @@ that you can merge into the master branch through a Pull Request.
 To create a new branch:
 
     git checkout -b cool-new-feature-branch
+
+
+### Docker
+
+    docker-compose up
+    docker-compose down
