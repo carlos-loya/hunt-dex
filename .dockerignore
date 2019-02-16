@@ -1,0 +1,2 @@
+# Ignore vender source from being checked in
+vendor/*/
