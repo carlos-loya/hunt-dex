@@ -1,6 +1,5 @@
 FROM golang:alpine AS build
 
-# Install tooling
 RUN set -ex \
   && apk add --no-cache git \
   && go get github.com/golang/dep/cmd/dep
