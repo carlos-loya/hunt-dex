@@ -1,4 +1,5 @@
 # hunt-dex
+[![Build Status](https://travis-ci.org/carlos-loya/hunt-dex.svg?branch=master)](https://travis-ci.org/carlos-loya/hunt-dex)
 A website for Hunters who want to keep track of their captured pets.
 
 
