@@ -18,8 +18,11 @@ To create a new branch:
 
     git checkout -b cool-new-feature-branch
 
-
 ### Docker
 
     docker-compose up
     docker-compose down
+
+### Travis CI
+
+The link to the build for master branch is here: https://travis-ci.org/carlos-loya/hunt-dex
