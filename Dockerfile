@@ -8,7 +8,7 @@ COPY . /go/src/github.com/carlos-loya/hunt-dex/
 WORKDIR /go/src/github.com/carlos-loya/hunt-dex/
 
 RUN set -ex \
-  && dep ensure -vendor-only \
+  && dep ensure -vendor-only -v \
   && pwd \
   && go build -o /bin/hunt-dex
 
