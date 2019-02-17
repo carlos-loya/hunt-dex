@@ -4,11 +4,12 @@ RUN set -ex \
   && apk add --no-cache git \
   && go get github.com/golang/dep/cmd/dep
 
-COPY . /go/src/hunt-dex/
-WORKDIR /go/src/hunt-dex/
+COPY . /go/src/github.com/carlos-loya/hunt-dex/
+WORKDIR /go/src/github.com/carlos-loya/hunt-dex/
 
 RUN set -ex \
-  && dep ensure -vendor-only \
+  && dep ensure -vendor-only -v \
+  && pwd \
   && go build -o /bin/hunt-dex
 
 FROM alpine:latest
