@@ -1,7 +1,18 @@
+sudo: false
+
 language: go
+
+go:
+  - 1.11.x
+
+git:
+  depth: 1
 
 services:
   - docker
 
+before_script:
+  - make deps
+
 script:
-- make test
+  - make test
