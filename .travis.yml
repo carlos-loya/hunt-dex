@@ -1,5 +1,7 @@
 language: go
+
 services:
   - docker
+
 script:
-- echo "Hello World!"
+- make test
