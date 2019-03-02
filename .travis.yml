@@ -16,3 +16,15 @@ before_script:
 
 script:
   - make test
+
+deploy:
+  provider: elasticbeanstalk
+  access_key_id: $ACCESSKEYID
+  secret_access_key:
+    secure: "$SECRETACCESSKEY"
+  region: "us-west-2"
+  app: "hunt-dex"
+  env: "hunt-dex-dev"
+  bucket_name: "elasticbeanstalk-us-west-2-264136589261"
+  on:
+    branch: master
