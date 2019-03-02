@@ -19,10 +19,10 @@ script:
 
 deploy:
   provider: elasticbeanstalk
-  access_key_id: $ACCESSKEYID
+  access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key:
-    secure: "$SECRETACCESSKEY"
-  region: "us-west-2"
+    secure: "$AWS_SECRET_ACCESS_KEY"
+  region: "$AWS_REGION"
   app: "hunt-dex"
   env: "hunt-dex-dev"
   bucket_name: "elasticbeanstalk-us-west-2-264136589261"
