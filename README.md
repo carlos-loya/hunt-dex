@@ -153,7 +153,7 @@ The Makefile's run method will first do a `make docker` then run that new docker
     app_1  | [GIN-debug] Listening and serving HTTP on :8080
 
 #### Docker
-This command will build a docker image by exporting your application into a Go binary that will serve as the entrypoint into the container when instantiated. 
+This command will build a docker image by exporting your application into a Go binary that will serve as the entrypoint into the container when instantiated.
 
     λ make docker
 
@@ -243,7 +243,8 @@ For this step, you'll need an account on docker hub and need to be invited to th
 Ask an admin for an invitation.
 
 
-    loya@gödel hunt-dex (decoupling) λ make push
+    λ make push
+
     set -ex \
                     && docker login \
                     && docker tag hunt-dex:latest carlosloya/hunt-dex:latest \
@@ -259,3 +260,38 @@ Ask an admin for an invitation.
     6e36cbfa270b: Pushed
     503e53e365f3: Layer already exists
     latest: digest: sha256:360f6e951387673d17344a38d3dbb6e41c0fffcc4d756278e71644af89a2e2fe size: 950
+
+
+
+## Deployment
+We are using AWS Elastic Beanstalk for deployment. At the end of a successful travis build, this will trigger a deployment to EB in `us-west-2`.
+
+### Environment Configuration
+You'll need to set up your development environment before deploying the application.
+
+#### AWS CLI
+You will need an AWS username from the main AWS Account. Ask Carlos for access keys to populate `aws configure`
+
+Using `brew`:
+
+    brew install awscli
+
+Using `pip3`:
+
+    pip install awscli --upgrade --user
+
+`aws` configuration wizard (credentials needed at this point):
+
+    aws configure
+
+
+#### Elastic Beanstalk CLI
+Using `brew`:
+
+    brew install awsebcli
+
+Using `pip3`:
+
+    pip install awsebcli --upgrade --user
+
+Refer to [Install the Elastic Beanstalk Command Line Interface (EB CLI)](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-install.html#eb-cli3-install.cli-only) page for more ways of installing the EB CLI.
