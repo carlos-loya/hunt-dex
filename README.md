@@ -23,10 +23,13 @@ To create a new branch:
 
 
 #### Docker-compose
+This is the main way to run the entire project once we have a database solution.
 
 ##### Up
+The `docker-compose up` command will start the necessary docker containers from the docker-compose yaml file definition.
 
-    loya@gödel hunt-dex (decoupling) λ docker-compose up
+    λ docker-compose up
+
     Creating network "hunt-dex_default" with the default driver
     Creating hunt-dex_app_1 ... done
     Attaching to hunt-dex_app_1
@@ -46,25 +49,31 @@ To create a new branch:
 
 ##### Down
 
-`docker-compose down` is a command you need to know to test the latest changes of your dockerfile
+The `docker-compose down` is a command you need to know to test the latest changes of your project. If you make changes to the code and done see them, try doing a down and seeing if that was the problem.
 
-    loya@gödel hunt-dex (decoupling) λ docker-compose down
+    λ docker-compose down
+
     Stopping hunt-dex_app_1 ... done
     Removing hunt-dex_app_1 ... done
     Removing network hunt-dex_default
 
 ### Travis CI
+Travis CI is a continuous integration tool we will be using for integrating builds into master and for deployment of new code to AWS.The Travis CI pipeline is defined in the `.travis.yml`.
 
-The link to the build for master branch is here: https://travis-ci.org/carlos-loya/hunt-dex
+The link to the Travis Build UI is [here](https://travis-ci.org/carlos-loya/hunt-dex)
+
+
 
 
 ### Makefile
+A `Makefile` is a developer utility tool to automate different workflows that you'll find yourself repeatedly.
 
 #### Dependencies
 
 Will fetch all dependencies for this project.
 
-    loya@gödel hunt-dex (decoupling) λ make deps
+    λ make deps
+
     set -ex \
                     && go get -u github.com/golang/dep/cmd/dep \
                     && dep ensure -vendor-only
@@ -81,8 +90,10 @@ Will fetch all dependencies for this project.
     (9/9) Wrote golang.org/x/sys@master
 
 #### Testing
+This command will run all of the tests defined in `src/test/...`
 
-    loya@gödel hunt-dex (decoupling) λ make test
+    λ make test
+
     set -ex \
         && go test -v ./...
     + go test -v ./...
@@ -91,15 +102,19 @@ Will fetch all dependencies for this project.
 Need to write some tests!
 
 #### Build
+This command will create a binary of the application and put it inside of the `bin/` directory.
 
-    loya@gödel hunt-dex (decoupling) λ make build
+    λ make build
+
     set -ex \
         && go build -o bin/hunt-dex -v
     + go build -o bin/hunt-dex -v
 
 #### Clean
+This command will clean your repository of any artifacts of building/running the application. You should use this command before you `git add` your changes.
 
-    loya@gödel hunt-dex (decoupling) λ make clean
+    λ make clean
+
     set -ex \
             && go clean \
             && rm -f "bin/hunt-dex" \
@@ -115,7 +130,8 @@ Need to write some tests!
 
 The Makefile's run method will first do a `make docker` then run that new docker image with a `docker-compose up`
 
-    loya@gödel hunt-dex (decoupling) λ make run
+    λ make run
+
     set -ex \
 
             && docker-compose up
@@ -137,8 +153,10 @@ The Makefile's run method will first do a `make docker` then run that new docker
     app_1  | [GIN-debug] Listening and serving HTTP on :8080
 
 #### Docker
+This command will build a docker image by exporting your application into a Go binary that will serve as the entrypoint into the container when instantiated. 
 
-    loya@gödel hunt-dex (decoupling) λ make docker
+    λ make docker
+
     set -ex \
                     && docker build --no-cache -t "hunt-dex:$(git log -1 --pretty=%H)" . \
                     && docker tag "hunt-dex:$(git log -1 --pretty=%H)" hunt-dex:latest \
